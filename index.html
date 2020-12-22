@@ -6,39 +6,44 @@
         <meta rel="stylesheet" type="text/css" href="#" media="all"/>
     </head>
     <body>
+        <button onclick = "resetGrid()">RESET</button>
         <div id="main-div" style="width:100%;height:100%;">
             <script>
-                let size = prompt("Enter number for size?");
+                    size = askGrid();
 
-                for(let i=0; i<size;i++) {
-                    //Create a row
-                    row = document.createElement('div');
-                    row.setAttribute("id", "Div-R"+i);
-                    row.setAttribute("style", "overflow:hidden;");
+                    function askGrid() {
+                    let sizeInput = prompt("Enter number for sizeInput?");
+                    for(let i=0; i<sizeInput;i++) {
+                        //Create a row
+                        row = document.createElement('div');
+                        row.setAttribute("id", "Div-R"+i);
+                        row.setAttribute("style", "overflow:hidden;");
 
-                    document.getElementById("main-div").appendChild(row);
-                    //Create a row elements
-                    for(let j=0; j<size; j++) {
-                        var elem = document.createElement('div');
-                        elem.setAttribute("class","cell-style");
-                        elem.setAttribute("onmouseover","changeCell('Div-C"+i+j+"')");
-                        elem.setAttribute("id","Div-C"+i+j)
-                        elem.style.setProperty("width",1000/size+"px")
-                        elem.style.setProperty("height",1000/size+"px")
-                        document.getElementById("Div-R"+i).appendChild(elem);
-
+                        document.getElementById("main-div").appendChild(row);
+                        //Create a row elements
+                        for(let j=0; j<sizeInput; j++) {
+                            var elem = document.createElement('div');
+                            elem.setAttribute("class","cell-style");
+                            elem.setAttribute("onmouseover","changeCell('Div-R"+i+"C"+j+"')");
+                            elem.setAttribute("id","Div-R"+i+"C"+j)
+                            elem.style.setProperty("width",1000/sizeInput+"px")
+                            elem.style.setProperty("height",1000/sizeInput+"px")
+                            document.getElementById("Div-R"+i).appendChild(elem);
+                
+                        }
                     }
+                    return sizeInput
                 }
-
                 function changeCell(cellId) {
                     var elem1 = document.getElementById(cellId);
                     elem1.setAttribute("style","background-color: #"+Math.floor(Math.random()*16777215).toString(16) +" !important"); 
                     elem1.style.setProperty("width",1000/size+"px")
-                    elem1.style.setProperty("height",1000/size+"px")
-                    
-         
+                    elem1.style.setProperty("height",1000/size+"px")       
                 }
-
+                
+                function resetGrid() {
+                    location.reload();
+                }
             </script>
             <style>
                 .cell-style {
