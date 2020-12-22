@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Etsy-a-Sketch</title>
+        <meta charset="UTF-8"/>
+        <meta rel="stylesheet" type="text/css" href="#" media="all"/>
+    </head>
+    <body>
+        <div id="main-div" style="width:100%;height:100%;">
+            <script>
+                let size = prompt("Enter number for size?");
+
+                for(let i=0; i<size;i++) {
+                    //Create a row
+                    row = document.createElement('div');
+                    row.setAttribute("id", "Div-R"+i);
+                    row.setAttribute("style", "overflow:hidden;");
+
+                    document.getElementById("main-div").appendChild(row);
+                    //Create a row elements
+                    for(let j=0; j<size; j++) {
+                        var elem = document.createElement('div');
+                        elem.setAttribute("class","cell-style");
+                        elem.setAttribute("onmouseover","changeCell('Div-C"+i+j+"')");
+                        elem.setAttribute("id","Div-C"+i+j)
+                        elem.style.setProperty("width",1000/size+"px")
+                        elem.style.setProperty("height",1000/size+"px")
+                        document.getElementById("Div-R"+i).appendChild(elem);
+
+                    }
+                }
+
+                function changeCell(cellId) {
+                    var elem1 = document.getElementById(cellId);
+                    elem1.setAttribute("style","background-color: #"+Math.floor(Math.random()*16777215).toString(16) +" !important"); 
+                    elem1.style.setProperty("width",1000/size+"px")
+                    elem1.style.setProperty("height",1000/size+"px")
+                    
+         
+                }
+
+            </script>
+            <style>
+                .cell-style {
+                    display:inline-block;
+                    float: left;
+                    border-style:solid;
+                    border-color:#333333;;
+                }
+            </style>
+        </div>
+    </body>
+</html>
